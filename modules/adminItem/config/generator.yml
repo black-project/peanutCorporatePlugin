@@ -28,9 +28,9 @@ generator:
             action: newLink
         
         object_actions:
-          promote:
+          up:
             action: promote
-          demote:
+          down:
             action: demote
           _edit:        ~
           _delete:      ~

@@ -5,6 +5,18 @@
     <header/>
     <body>
       <trans-unit>
+        <source>Up</source>
+        <target>Monter</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Down</source>
+        <target>Descendre</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Make root</source>
+        <target>Passer au niveau supérieur</target>
+      </trans-unit>
+      <trans-unit>
         <source>General</source>
         <target>Général</target>
       </trans-unit>
