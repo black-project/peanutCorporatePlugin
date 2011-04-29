@@ -14,7 +14,6 @@ abstract class PluginpeanutXfnForm extends BasepeanutXfnForm
   {
     parent::setup();
 
-
     $this->widgetSchema['friendship'] = new sfWidgetFormSelectRadio(array(
         'choices' => array('contact' => 'contact', 'acquaintance' => 'acquaintance', 'friend' => 'friend')
     ));
