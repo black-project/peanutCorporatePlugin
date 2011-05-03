@@ -36,7 +36,7 @@ abstract class PluginpeanutItemForm extends BasepeanutItemForm
     ));
     
     $this->widgetSchema['slug'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
-        'placeholder' => 'My Title'
+        'placeholder' => 'my-title'
     ));
     
     $this->widgetSchema->setHelps(array(
