@@ -17,10 +17,6 @@ abstract class PluginpeanutItemForm extends BasepeanutItemForm
     $user = self::getValidUser();
     
     $this->useFields(array(
-     'title',
-     'slug',
-     'content',
-     'excerpt',
      'status',
      'author',
      'status',

@@ -17,24 +17,10 @@ abstract class PluginpeanutPageForm extends BasepeanutPageForm
     $user = self::getValidUser();
     
     $this->useFields(array(
-     'title',
-     'slug',
-     'content',
-     'excerpt',
      'status',
      'author',
      'menu',
      'created_at'
-    ));
-    
-    $this->widgetSchema['content'] = new sfWidgetFormCKEditor(array('jsoptions'=>array(
-    	'customConfig'				      => '/lib/ckeditor/config.js',
-    	'filebrowserBrowseUrl'            => '/lib/elfinder-1.1/elfinder.php.html',
-    	'filebrowserImageBrowseUrl'       => '/lib/elfinder-1.1/elfinder.php.html'
-    )));
-    
-    $this->widgetSchema['excerpt'] = new sfWidgetFormTextarea($options = array(), $attributes = array(
-        'placeholder' => 'Excerpt or aside for my content'
     ));
 
     $this->embedRelation('peanutSeo');
@@ -55,5 +41,9 @@ abstract class PluginpeanutPageForm extends BasepeanutPageForm
     ),$messages = array(
       'required'  => 'Fill this please'
     ));
+    
+    $this->embedI18n(array('en', 'fr'));
+    $this->widgetSchema->setLabel('en', 'English');
+    $this->widgetSchema->setLabel('fr', 'Français');
   }
 }

@@ -18,8 +18,7 @@ generator:
       filter:  ~
       form:
         display:
-          "General":        [title, slug]
-          "Content":        [content, excerpt, peanutSeo]
+          "Content":        [fr, en, peanutSeo]
           "Informations":   [status, author, menu, created_at]
 
       edit:    ~
