@@ -54,7 +54,7 @@ $t->is(count($item), '1', 'There are 1 draft item');
 $t->comment('Get all items for a menu');
 
 $item = Doctrine_Core::getTable('peanutItem')->getItemsByMenu(1, 'draft')->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-$t->is(count($item), '1', 'There are 1 item in this menu (1)');
+$t->is(count($item), '1', 'There are 1 item in this menu (2)');
 
 /*
  * 

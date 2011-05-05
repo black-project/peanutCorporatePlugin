@@ -92,7 +92,7 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
   public function getItemsByMenuAndStatus($menu, $status = 'publish')
   {
     $p = $this->getItemsByMenu($menu)
-            ->where('p.status = ?', $status);
+            ->addWhere('p.status = ?', $status);
 
     return $p;
   }
@@ -124,7 +124,7 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
   public function getItemsByAuthorAndStatus($author, $status = 'publish')
   {
     $p = $this->getItemsByAuthor($author)
-            ->where('p.status = ?', $status);
+            ->addWhere('p.status = ?', $status);
 
     return $p;
   }
