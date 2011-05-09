@@ -17,10 +17,7 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
     $user = self::getValidUser();
     
     $this->useFields(array(
-     'title',
-     'slug',
      'url',
-     'content',
      'relation',
      'author',
      'status',
@@ -32,10 +29,6 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
         'required'    => true,
         'placeholder' => 'http://www.mywebsite.com',
         'pattern'     => 'https?://.+'
-    ));
-
-    $this->widgetSchema['content'] = new sfWidgetFormTextarea($options = array(), $attributes = array(
-        'placeholder' => 'Simple description about my link'
     ));
 
     $this->embedRelation('peanutXfn');
@@ -59,5 +52,9 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
     ),$messages = array(
       'required'  => 'Fill this please'
     ));
+    
+    $this->embedI18n(array('fr', 'en'));
+    $this->widgetSchema->setLabel('fr', 'Français');
+    $this->widgetSchema->setLabel('en', 'English');
   }
 }

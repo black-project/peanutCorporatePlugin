@@ -19,5 +19,20 @@ abstract class PluginpeanutItemTranslationForm extends BasepeanutItemTranslation
       'slug',
       'content'
     ));
+    
+    $this->widgetSchema['title'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
+        'required'    => true,
+        'placeholder' => 'My Title'
+    ));
+    
+    $this->widgetSchema['slug'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
+        'placeholder' => 'my-title'
+    ));
+    
+    $this->widgetSchema->setHelps(array(
+      'title'         => 'The item title (required)',
+      'slug'          => 'Not required but maybe usefull for your SEO',
+      'content'       => 'The item content (required)'
+    ));
   }
 }

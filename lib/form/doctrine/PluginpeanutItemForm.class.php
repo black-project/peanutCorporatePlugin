@@ -26,19 +26,7 @@ abstract class PluginpeanutItemForm extends BasepeanutItemForm
      'created_at'
     ));
     
-    $this->widgetSchema['title'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
-        'required'    => true,
-        'placeholder' => 'My Title'
-    ));
-    
-    $this->widgetSchema['slug'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
-        'placeholder' => 'my-title'
-    ));
-    
     $this->widgetSchema->setHelps(array(
-      'title'         => 'The item title (required)',
-      'slug'          => 'Not required but maybe usefull for your SEO',
-      'content'       => 'The item content (required)',
       'excerpt'       => 'The item excerpt (not required)',
       'status'        => 'If you want to hide this entry for visitors',
       'menu'          => 'The menu where will appear this iteam',

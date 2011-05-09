@@ -16,10 +16,6 @@ generator:
       fields:  ~
       list:    ~
       filter:  ~
-      form:
-        display:
-          "Content":        [fr, en, peanutSeo]
-          "Informations":   [status, author, menu, created_at]
-
+      form:    ~
       edit:    ~
       new:     ~

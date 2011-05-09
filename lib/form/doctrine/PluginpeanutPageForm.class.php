@@ -10,9 +10,9 @@
  */
 abstract class PluginpeanutPageForm extends BasepeanutPageForm
 {
-  public function setup()
+  protected function setupInheritance()
   {
-    parent::setup();
+    parent::setupInheritance();
     
     $user = self::getValidUser();
     
@@ -36,14 +36,8 @@ abstract class PluginpeanutPageForm extends BasepeanutPageForm
       unset($this['created_at']);
     }
     
-    $this->validatorSchema['content'] = new sfValidatorString($options = array(
-      'required'  => true
-    ),$messages = array(
-      'required'  => 'Fill this please'
-    ));
-    
-    $this->embedI18n(array('en', 'fr'));
-    $this->widgetSchema->setLabel('en', 'English');
+    $this->embedI18n(array('fr', 'en'));
     $this->widgetSchema->setLabel('fr', 'Français');
+    $this->widgetSchema->setLabel('en', 'English');
   }
 }
