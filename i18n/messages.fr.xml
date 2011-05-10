@@ -108,6 +108,14 @@
         <source>The item url (must be an http or https url)</source>
         <target>Le lien internet (doit être un lien http ou https)</target>
       </trans-unit>
+      <trans-unit>
+        <source>publish</source>
+        <target>Publié</target>
+      </trans-unit>
+      <trans-unit>
+        <source>draft</source>
+        <target>Brouillon</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
