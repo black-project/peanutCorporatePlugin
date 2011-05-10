@@ -28,6 +28,8 @@ generator:
             action: newLink
         
         object_actions:
+          "Change status":
+            action: changestatus
           up:
             action: promote
           down:

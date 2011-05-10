@@ -116,6 +116,10 @@
         <source>draft</source>
         <target>Brouillon</target>
       </trans-unit>
+      <trans-unit>
+        <source>Change status</source>
+        <target>Changer le statut</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -19,6 +19,14 @@ class adminItemActions extends autoAdminItemActions
     $query->addOrderBy('position asc');
   }
   
+  public function executeChangestatus()
+  {
+    $object = Doctrine_Core::getTable('peanutItem')->findOneById($this->getRequestParameter('id'));
+    $object->changeStatus();
+    
+    $this->redirect('@peanut_item');
+  }
+  
   public function executePromote()
   {
     $object = Doctrine_Core::getTable('peanutItem')->findOneById($this->getRequestParameter('id'));
