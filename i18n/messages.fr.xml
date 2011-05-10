@@ -108,6 +108,22 @@
         <source>The item url (must be an http or https url)</source>
         <target>Le lien internet (doit être un lien http ou https)</target>
       </trans-unit>
+      <trans-unit>
+        <source>publish</source>
+        <target>Publié</target>
+      </trans-unit>
+      <trans-unit>
+        <source>draft</source>
+        <target>Brouillon</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Change status</source>
+        <target>Changer le statut</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Status was modified successfully</source>
+        <target>Le statut de publication a été modifié avec succès</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

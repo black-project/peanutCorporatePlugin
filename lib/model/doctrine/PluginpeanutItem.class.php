@@ -12,4 +12,19 @@
  */
 abstract class PluginpeanutItem extends BasepeanutItem
 {
+  
+  public function changeStatus()
+  {
+
+    if('draft' == $this->getStatus())
+    {
+      $this->setStatus('publish');
+    }
+    elseif('publish' == $this->getStatus())
+    {
+      $this->setStatus('draft');
+    }
+    
+    $this->save();
+  }
 }

@@ -18,8 +18,7 @@ generator:
       
       list:
         title:   "Items"
-        
-        display: [title, sfGuardUser, type, peanutMenu]
+        display: [=title, sfGuardUser, type, peanutMenu, status]
         
         actions:
           "Create new page":
@@ -28,6 +27,8 @@ generator:
             action: newLink
         
         object_actions:
+          "Change status":
+            action: changestatus
           up:
             action: promote
           down:
@@ -36,6 +37,10 @@ generator:
           _delete:      ~
 
         max_per_page:   15
+        
+        batch_actions:
+          status:     ~
+          _delete:    ~
 
       filter:
         display:           [type, menu]
