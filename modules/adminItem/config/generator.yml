@@ -38,6 +38,10 @@ generator:
           _delete:      ~
 
         max_per_page:   15
+        
+        batch_actions:
+          status:     ~
+          _delete:    ~
 
       filter:
         display:           [title, type, menu]

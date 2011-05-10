@@ -13,11 +13,6 @@
 abstract class PluginpeanutItem extends BasepeanutItem
 {
   
-  public function showStatus()
-  {
-    return $this->getStatus();
-  }
-  
   public function changeStatus()
   {
 

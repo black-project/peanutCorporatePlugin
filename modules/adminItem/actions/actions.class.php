@@ -24,6 +24,23 @@ class adminItemActions extends autoAdminItemActions
     $object = Doctrine_Core::getTable('peanutItem')->findOneById($this->getRequestParameter('id'));
     $object->changeStatus();
     
+    $this->getUser()->setFlash('notice', 'Status was modified successfully');
+    $this->redirect('@peanut_item');
+  }
+  
+  public function executeBatchStatus()
+  {
+    $ids = $this->getRequestParameter('ids');
+    
+    $q = Doctrine_Core::getTable('peanutItem')->getItem();
+    $q->whereIn('p.id', $ids);
+    
+    foreach($q->execute() as $item)
+    {
+      $item->changeStatus();
+    }
+    
+    $this->getUser()->setFlash('notice', 'Status was modified successfully');
     $this->redirect('@peanut_item');
   }
   
