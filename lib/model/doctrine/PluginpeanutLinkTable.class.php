@@ -22,15 +22,21 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-  public function getItem()
+  public function getItem($lang = null)
   {
     $p = $this->createQuery('p')
+            ->leftJoin('p.translation t')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
             ->leftJoin('p.peanutXfn x')
             ->leftJoin('p.peanutSeo o')
             ->orderBy('p.position ASC');
-
+    
+    if(null !== $lang)
+    {
+      $p->where('t.lang = ?', $lang);
+    }
+    
     return $p;
   }
 
@@ -41,11 +47,10 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-  public function showItem($item)
+  public function showItem($item, $lang = null)
   {
-    $p = $this->getItem()
-            ->where('p.id = ?', $item)
-            ->orWhere('p.slug = ?', $item);
+    $p = $this->getItem($lang)
+            ->andWhere('p.id = ? or t.slug = ?', array($item, $item));
 
     return $p;
   }
@@ -57,10 +62,10 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-  public function getItems($status = 'publish')
+  public function getItems($status = 'publish', $lang = null)
   {
-    $p = $this->getItem()
-            ->where('p.status = ?', $status);
+    $p = $this->getItem($lang)
+            ->andWhere('p.status = ?', $status);
 
     return $p;
   }
@@ -73,10 +78,10 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-  public function getItemsByMenu($menu, $status = 'publish')
+  public function getItemsByMenu($menu, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem()
-            ->where('m.id = ? OR m.slug = ?', array($menu, $menu))
+    $p = $this->getItem($lang)
+            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu))
             ->andWhere('p.status = ?', $status);
 
     return $p;
@@ -90,10 +95,10 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-  public function getItemsByAuthor($author, $status = 'publish')
+  public function getItemsByAuthor($author, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem()
-            ->where('s.id = ? OR s.username = ?', array($author, $author))
+    $p = $this->getItem($lang)
+            ->andWhere('s.id = ? OR s.username = ?', array($author, $author))
             ->andWhere('p.status = ?', $status);
 
     return $p;
@@ -107,10 +112,10 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    *
    * @return peanutLink
    */
-   public function getItemsByRelation($rel, $status = 'publish')
+   public function getItemsByRelation($rel, $status = 'publish', $lang = null)
    {
-     $p = $this->getItem()
-             ->where('x.me LIKE ?', '%' . $rel . '%')
+     $p = $this->getItem($lang)
+             ->andWhere('x.me LIKE ?', '%' . $rel . '%')
              ->orWhere('x.friendship LIKE ?', '%' . $rel . '%')
              ->orWhere('x.physical LIKE ?', '%' . $rel . '%')
              ->orWhere('x.professional LIKE ?', '%' . $rel . '%')

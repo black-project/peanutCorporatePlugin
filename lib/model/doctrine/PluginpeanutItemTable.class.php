@@ -24,13 +24,19 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    *
    * @return peanutItem
    */
-  public function getItem($type = null)
+  public function getItem($lang = null, $type = null)
   {
     $p = $this->createQuery('p')
+            ->leftJoin('p.translation t')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
             ->orderBy('p.position ASC');
 
+    if(null !== $lang)
+    {
+      $p->andWhere('t.lang = ?', $lang);
+    }
+    
     if(null !== $type)
     {
       $p->where('p.type = ?', $type);
@@ -47,12 +53,12 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    *
    * @return peanutItem
    */
-  public function showItem($item, $type = null)
+  public function showItem($item, $lang = null, $type = null)
   {
-    $p = $this->getItem($type)
+    $p = $this->getItem($lang, $type)
             ->leftJoin('p.peanutSeo o')
             ->andWhere('p.id = ?', $item)
-            ->orWhere('p.slug = ?', $item);
+            ->orWhere('t.slug = ?', $item);
 
     return $p;
   }
@@ -65,9 +71,9 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    *
    * @return peanutItem
    */
-  public function getItems($status = 'publish', $type = null)
+  public function getItems($status = 'publish', $lang = null, $type = null)
   {
-    $p = $this->getItem($type)
+    $p = $this->getItem($lang, $type)
             ->where('p.status = ?', $status);
 
     return $p;
@@ -82,9 +88,9 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    *
    * @return peanutItem
    */
-  public function getItemsByMenu($menu, $status = 'publish', $type = null)
+  public function getItemsByMenu($menu, $status = 'publish', $lang = null, $type = null)
   {
-    $p = $this->getItem($type)
+    $p = $this->getItem($lang, $type)
             ->addWhere('m.id = ? OR m.slug = ?', array($menu, $menu))
             ->addWhere('p.status = ?', $status);
     
@@ -100,9 +106,9 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    *
    * @return peanutItem
    */
-  public function getItemsByAuthor($author, $status = 'publish', $type = null)
+  public function getItemsByAuthor($author, $status = 'publish', $lang = null, $type = null)
   {
-    $p = $this->getItem($type)
+    $p = $this->getItem($lang, $type)
             ->addWhere('s.id = ? OR s.username = ?', array($author, $author));
     
     return $p;
