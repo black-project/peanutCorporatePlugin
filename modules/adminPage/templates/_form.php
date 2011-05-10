@@ -2,6 +2,14 @@
 <?php use_javascripts_for_form($form) ?>
 
 <div class="sf_admin_form">
+  
+  <section class="language clearfix">
+    <ul>
+      <li class="us">US</li>
+      <li class="fr">FR</li>
+    </ul>
+  </section>
+  
   <?php echo form_tag_for($form, '@peanut_page') ?>
     <?php echo $form->renderHiddenFields(false) ?>
 
