@@ -12,13 +12,17 @@ class itemsComponents extends sfComponents
 {
   public function executeMainMenu(sfWebRequest $request)
   {
-    $items = Doctrine_Core::getTable('peanutItem')->getItemsByMenu(1);
+    $this->culture = $request->getParameter('sf_culture');
+    
+    $items = Doctrine_Core::getTable('peanutItem')->getItemsByMenu(1, 'publish', $this->culture);
     $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
   }
 
   public function executeFooterMenu(sfWebRequest $request)
   {
-    $items = Doctrine_Core::getTable('peanutLink')->getItemsByMenu(2);
+    $this->culture = $request->getParameter('sf_culture');
+    
+    $items = Doctrine_Core::getTable('peanutLink')->getItemsByMenu(2, 'publish', $this->culture);
     $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
   }
 }

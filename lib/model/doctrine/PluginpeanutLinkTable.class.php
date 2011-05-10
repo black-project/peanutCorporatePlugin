@@ -25,7 +25,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
   public function getItem($lang = null)
   {
     $p = $this->createQuery('p')
-            ->leftJoin('p.translation t')
+            ->leftJoin('p.Translation t')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
             ->leftJoin('p.peanutXfn x')

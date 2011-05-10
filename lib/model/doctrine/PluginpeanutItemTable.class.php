@@ -27,14 +27,14 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
   public function getItem($lang = null, $type = null)
   {
     $p = $this->createQuery('p')
-            ->leftJoin('p.translation t')
+            ->leftJoin('p.Translation t')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
             ->orderBy('p.position ASC');
 
     if(null !== $lang)
     {
-      $p->andWhere('t.lang = ?', $lang);
+      $p->where('t.lang = ?', $lang);
     }
     
     if(null !== $type)
@@ -57,8 +57,7 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
   {
     $p = $this->getItem($lang, $type)
             ->leftJoin('p.peanutSeo o')
-            ->andWhere('p.id = ?', $item)
-            ->orWhere('t.slug = ?', $item);
+            ->andWhere('p.id = ? OR t.slug = ?', array($item, $item));
 
     return $p;
   }

@@ -18,7 +18,6 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
     
     $this->useFields(array(
      'url',
-     'relation',
      'author',
      'status',
      'menu',

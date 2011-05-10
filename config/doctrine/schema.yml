@@ -8,8 +8,7 @@ peanutItem:
     I18n:
       fields:      [title, content, excerpt]
       actAs:
-        Sluggable:
-          fields:  { fields: [title], uniqueBy: [lang, title] }
+        Sluggable: { fields: [title], uniqueBy: [lang, title] }
   columns:
     id:
       primary: true

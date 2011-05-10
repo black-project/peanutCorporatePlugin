@@ -1,34 +1,34 @@
 # www
 item_show:
-  url:             /:slug.:sf_format
+  url:             /:sf_culture/:slug.:sf_format
   class:           sfDoctrineRoute
   options:         { model: peanutItem, type: object }
   params:          { module: items, action: show }
   requirements:    { sf_method: get, sf_format: html }
 
 item_list:
-  url:             /items/list.:sf_format
+  url:             /:sf_culture/items/list.:sf_format
   class:           sfDoctrineRoute
   options:         { model: peanutItem, type: object }
   params:          { module: items, action: list }
   requirements:    { sf_method: get, sf_format: html|xml|json }
 
 item_author:
-  url:             /items/author/:author.:sf_format
+  url:             /:sf_culture/items/author/:author.:sf_format
   class:           sfDoctrineRoute
   options:         { model: peanutItem, type: object }
   params:          { module: items, action: listByAuthor }
   requirements:    { sf_method: get, sf_format: html|xml|json }
 
 item_menu:
-  url:             /items/menu/:menu.:sf_format
+  url:             /:sf_culture/items/menu/:menu.:sf_format
   class:           sfDoctrineRoute
   options:         { model: peanutItem, type: object }
   params:          { module: items, action: listByMenu }
   requirements:    { sf_method: get, sf_format: html|xml|json }
 
 item_relation:
-  url:             /items/relation/:relation.:sf_format
+  url:             /:sf_culture/items/relation/:relation.:sf_format
   class:           sfDoctrineRoute
   options:         { model: peanutItem, type: object }
   params:          { module: items, action: listLinkByRelation }

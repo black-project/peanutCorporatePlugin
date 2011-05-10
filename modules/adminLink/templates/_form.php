@@ -19,7 +19,7 @@
       
     <fieldset id="sf_fieldset_general">
       <div class="content_box_header">
-        <h2><?php echo __('Général') ?></h2>
+        <h2><?php echo __('General') ?></h2>
       </div>
       
       <div class="content_box_content clearfix">

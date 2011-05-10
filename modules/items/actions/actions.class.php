@@ -12,6 +12,22 @@ class itemsActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
+    if(!$request->getParameter('sf_culture'))
+    {
+      if($this->getUser()->isFirstRequest())
+      {
+        $culture = $request->getPreferredCulture(array('en', 'fr'));
+        $this->getUser()->setCulture($culture);
+        $this->getUser()->isFirstRequest(false);
+      }
+      else
+      {
+        $culture = $this->getUser()->getCulture();
+      }
+      
+      $this->redirect('localized_homepage');
+      
+    }
     $items = Doctrine_Core::getTable('peanutPage')->getItemsByMenuAndStatus(1);
     $this->item = $items->fetchOne();
 
