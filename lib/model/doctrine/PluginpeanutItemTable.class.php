@@ -33,7 +33,7 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
 
     if(null !== $type)
     {
-      $p->where('p.type = ?', $type);
+      $p->andWhere('p.type = ?', $type);
     }
     
     return $p;
@@ -51,8 +51,7 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
   {
     $p = $this->getItem($type)
             ->leftJoin('p.peanutSeo o')
-            ->andWhere('p.id = ?', $item)
-            ->orWhere('p.slug = ?', $item);
+            ->andWhere('p.id = ? OR p.slug = ?', array($item, $item));
 
     return $p;
   }
@@ -68,7 +67,7 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
   public function getItems($status = 'publish', $type = null)
   {
     $p = $this->getItem($type)
-            ->where('p.status = ?', $status);
+            ->andWhere('p.status = ?', $status);
 
     return $p;
   }
@@ -84,9 +83,8 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    */
   public function getItemsByMenu($menu, $status = 'publish', $type = null)
   {
-    $p = $this->getItem($type)
-            ->addWhere('m.id = ? OR m.slug = ?', array($menu, $menu))
-            ->addWhere('p.status = ?', $status);
+    $p = $this->getItems($status, $type)
+            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu));
     
     return $p;
   }
@@ -102,8 +100,8 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
    */
   public function getItemsByAuthor($author, $status = 'publish', $type = null)
   {
-    $p = $this->getItem($type)
-            ->addWhere('s.id = ? OR s.username = ?', array($author, $author));
+    $p = $this->getItems($status, $type)
+            ->andWhere('s.id = ? OR s.username = ?', array($author, $author));
     
     return $p;
   }

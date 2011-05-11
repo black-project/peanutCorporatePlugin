@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display:  [id, =name, slug]
+        display:  [=name, slug]
         
         batch_actions:
           order:
@@ -24,7 +24,7 @@ generator:
           
         object_actions:
           new:
-            label:         Ajouter enfant
+            label:         Add children
           up:
             action:        up
           down:

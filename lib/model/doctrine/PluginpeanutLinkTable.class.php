@@ -44,8 +44,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
   public function showItem($item)
   {
     $p = $this->getItem()
-            ->where('p.id = ?', $item)
-            ->orWhere('p.slug = ?', $item);
+            ->where('p.id = ? OR p.slug = ?', array($item, $item));
 
     return $p;
   }
@@ -60,7 +59,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
   public function getItems($status = 'publish')
   {
     $p = $this->getItem()
-            ->where('p.status = ?', $status);
+            ->andWhere('p.status = ?', $status);
 
     return $p;
   }
@@ -75,9 +74,8 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
   public function getItemsByMenu($menu, $status = 'publish')
   {
-    $p = $this->getItem()
-            ->where('m.id = ? OR m.slug = ?', array($menu, $menu))
-            ->andWhere('p.status = ?', $status);
+    $p = $this->getItems($status)
+            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu));
 
     return $p;
   }
@@ -92,9 +90,8 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
   public function getItemsByAuthor($author, $status = 'publish')
   {
-    $p = $this->getItem()
-            ->where('s.id = ? OR s.username = ?', array($author, $author))
-            ->andWhere('p.status = ?', $status);
+    $p = $this->getItems($status)
+            ->andWhere('s.id = ? OR s.username = ?', array($author, $author));
 
     return $p;
   }
@@ -109,7 +106,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
    public function getItemsByRelation($rel, $status = 'publish')
    {
-     $p = $this->getItem()
+     $p = $this->getItems($status)
              ->where('x.me LIKE ?', '%' . $rel . '%')
              ->orWhere('x.friendship LIKE ?', '%' . $rel . '%')
              ->orWhere('x.physical LIKE ?', '%' . $rel . '%')

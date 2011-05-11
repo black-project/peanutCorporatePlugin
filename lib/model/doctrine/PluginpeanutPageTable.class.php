@@ -45,8 +45,7 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
   public function showItem($item)
   {
     $p = $this->getItem()
-            ->where('p.id = ?', $item)
-            ->orWhere('p.slug = ?', $item);
+            ->where('p.id = ? OR p.slug = ?', array($item, $item));
 
     return $p;
   }
@@ -73,26 +72,10 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
    *
    * @return peanutPage
    */
-  public function getItemsByMenu($menu)
+  public function getItemsByMenu($menu, $status = 'publish')
   {
-    $p = $this->getItem()
-            ->where('m.id = ? OR m.slug = ?', array($menu, $menu));
-
-    return $p;
-  }
-
-  /**
-   * Retrieves pages object by menu and status.
-   *
-   * @param  string|int $menu     The id or slug of menu
-   * @param  string     $status   The status of page
-   *
-   * @return peanutPage
-   */
-  public function getItemsByMenuAndStatus($menu, $status = 'publish')
-  {
-    $p = $this->getItemsByMenu($menu)
-            ->addWhere('p.status = ?', $status);
+    $p = $this->getItems($status)
+            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu));
 
     return $p;
   }
@@ -105,27 +88,12 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
    *
    * @return peanutPage
    */
-  public function getItemsByAuthor($author)
+  public function getItemsByAuthor($author, $status = 'publish')
   {
-    $p = $this->getItem()
-            ->where('s.id = ? OR s.username = ?', array($author, $author));
+    $p = $this->getItems($status)
+            ->andWhere('s.id = ? OR s.username = ?', array($author, $author));
 
     return $p;
   }
 
-  /**
-   * Retrieves pages object by author.
-   *
-   * @param  string|int $author   The id or username of author
-   * @param  string     $status   The status of page
-   *
-   * @return peanutPage
-   */
-  public function getItemsByAuthorAndStatus($author, $status = 'publish')
-  {
-    $p = $this->getItemsByAuthor($author)
-            ->addWhere('p.status = ?', $status);
-
-    return $p;
-  }
 }
