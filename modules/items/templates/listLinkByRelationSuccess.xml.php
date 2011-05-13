@@ -13,9 +13,9 @@
     <?php foreach($items as $item): ?>
 
     <item>
-      <title><?php echo htmlentities($item['title']) ?></title>
-      <link><?php echo url_for('item_show', array('slug' => $item['title'], 'sf_format' => 'html')) ?></link>
-      <description><![CDATA[<?php echo htmlspecialchars_decode($item['content']) ?>]]></description>
+      <title><?php echo htmlentities($item['Translation'][$culture]['title']) ?></title>
+      <link><?php echo url_for('item_show', array('slug' => $item['Translation'][$culture]['slug'], 'sf_format' => 'html'), true) ?></link>
+      <description><![CDATA[<?php echo htmlspecialchars_decode($item['Translation'][$culture]['content']) ?>]]></description>
       <pubdate><?php echo $item['created_at'] ?></pubdate>
       <guid>item-<?php echo $item['id'] ?></guid>
     </item>
