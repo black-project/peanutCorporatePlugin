@@ -34,7 +34,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
     
     if(null !== $lang)
     {
-      $p->where('t.lang = ?', $lang);
+      $p->andWhere('t.lang = ?', $lang);
     }
     
     return $p;
@@ -80,9 +80,8 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
   public function getItemsByMenu($menu, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem($lang)
-            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu))
-            ->andWhere('p.status = ?', $status);
+    $p = $this->getItems($status, $lang)
+            ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu));
 
     return $p;
   }
@@ -97,9 +96,8 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
   public function getItemsByAuthor($author, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem($lang)
-            ->andWhere('s.id = ? OR s.username = ?', array($author, $author))
-            ->andWhere('p.status = ?', $status);
+    $p = $this->getItems($status, $lang)
+            ->andWhere('s.id = ? OR s.username = ?', array($author, $author));
 
     return $p;
   }
@@ -114,7 +112,7 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
    */
    public function getItemsByRelation($rel, $status = 'publish', $lang = null)
    {
-     $p = $this->getItem($lang)
+     $p = $this->getItems($status, $lang)
              ->andWhere('x.me LIKE ?', '%' . $rel . '%')
              ->orWhere('x.friendship LIKE ?', '%' . $rel . '%')
              ->orWhere('x.physical LIKE ?', '%' . $rel . '%')

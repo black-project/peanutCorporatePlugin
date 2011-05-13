@@ -28,7 +28,8 @@ class itemsActions extends sfActions
       $this->redirect('localized_homepage');
       
     }
-    $items = Doctrine_Core::getTable('peanutPage')->getItemsByMenuAndStatus(1);
+
+    $items = Doctrine_Core::getTable('peanutPage')->getItemsByMenu(1);
     $this->item = $items->fetchOne();
 
     $this->forward404Unless($this->item);
@@ -52,7 +53,7 @@ class itemsActions extends sfActions
 
   public function executeListByAuthor(sfWebRequest $request)
   {
-    $items = Doctrine_Core::getTable('peanutPage')->getItemsByAuthorAndStatus($this->getRequestParameter('author'));
+    $items = Doctrine_Core::getTable('peanutPage')->getItemsByAuthor($this->getRequestParameter('author'));
     $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
 
     $this->forward404Unless($this->items);

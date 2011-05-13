@@ -35,7 +35,7 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
     
     if(null !== $lang)
     {
-      $p->where('t.lang = ?', $lang);
+      $p->andWhere('t.lang = ?', $lang);
     }
     
     return $p;
@@ -78,31 +78,15 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
    *
    * @return peanutPage
    */
-  public function getItemsByMenu($menu, $lang = null)
+  public function getItemsByMenu($menu, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem($lang)
+    $p = $this->getItems($status, $lang)
             ->andWhere('m.id = ? OR m.slug = ?', array($menu, $menu));
 
     return $p;
   }
 
   /**
-   * Retrieves pages object by menu and status.
-   *
-   * @param  string|int $menu     The id or slug of menu
-   * @param  string     $status   The status of page
-   *
-   * @return peanutPage
-   */
-  public function getItemsByMenuAndStatus($menu, $status = 'publish', $lang = null)
-  {
-    $p = $this->getItemsByMenu($menu)
-            ->andWhere('p.status = ?', $status);
-
-    return $p;
-  }
-
-  /**
    * Retrieves pages object by author.
    *
    * @param  string|int $author   The id or username of author
@@ -110,26 +94,10 @@ abstract class PluginpeanutPageTable extends Doctrine_Table
    *
    * @return peanutPage
    */
-  public function getItemsByAuthor($author, $lang = null)
+  public function getItemsByAuthor($author, $status = 'publish', $lang = null)
   {
-    $p = $this->getItem($lang)
+    $p = $this->getItems($status)
             ->andWhere('s.id = ? OR s.username = ?', array($author, $author));
-
-    return $p;
-  }
-
-  /**
-   * Retrieves pages object by author.
-   *
-   * @param  string|int $author   The id or username of author
-   * @param  string     $status   The status of page
-   *
-   * @return peanutPage
-   */
-  public function getItemsByAuthorAndStatus($author, $status = 'publish', $lang = null)
-  {
-    $p = $this->getItemsByAuthor($author)
-            ->andWhere('p.status = ?', $status);
 
     return $p;
   }
