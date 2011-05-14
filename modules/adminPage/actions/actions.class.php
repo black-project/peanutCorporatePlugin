@@ -13,4 +13,11 @@ require_once dirname(__FILE__).'/../lib/adminPageGeneratorHelper.class.php';
  */
 class adminPageActions extends autoAdminPageActions
 {
+  public function buildQuery()
+  {
+    return parent::buildQuery()
+      ->leftJoin('r.peanutMenu as m ON r.menu = m.id')
+      ->leftJoin('r.peanutSeo as s ON r.seo_id = s.id')
+      ->leftJoin('r.sfGuardUser as u ON r.author = u.id');
+  }
 }
