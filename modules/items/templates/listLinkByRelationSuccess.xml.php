@@ -14,7 +14,7 @@
 
     <item>
       <title><?php echo htmlentities($item['title']) ?></title>
-      <link><?php echo url_for('item_show', array('slug' => $item['title'], 'sf_format' => 'html')) ?></link>
+      <link><?php echo url_for('item_show', array('slug' => $item['slug'], 'sf_format' => 'html')) ?></link>
       <description><![CDATA[<?php echo htmlspecialchars_decode($item['content']) ?>]]></description>
       <pubdate><?php echo $item['created_at'] ?></pubdate>
       <guid>item-<?php echo $item['id'] ?></guid>
