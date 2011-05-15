@@ -19,6 +19,14 @@ class adminItemActions extends autoAdminItemActions
     $query->addOrderBy('position asc');
   }
   
+  public function buildQuery()
+  {
+    return parent::buildQuery()
+      ->leftJoin('r.peanutMenu as m ON r.menu = m.id')
+      ->leftJoin('r.peanutSeo as s ON r.seo_id = s.id')
+      ->leftJoin('r.sfGuardUser as u ON r.author = u.id');
+  }
+  
   public function executeChangestatus()
   {
     $object = Doctrine_Core::getTable('peanutItem')->findOneById($this->getRequestParameter('id'));

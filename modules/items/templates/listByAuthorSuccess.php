@@ -2,7 +2,7 @@
 
 <section>
 
-  <h1><?php echo __('Last entries for') . ' ' . $items[0]['sfGuardUser']['username'] ?></h1>
+  <h1><?php echo __('Last entries for', null, 'peanutCorporate') . ' ' . $items[0]['sfGuardUser']['username'] ?></h1>
 
   <?php foreach($items as $item): ?>
 
