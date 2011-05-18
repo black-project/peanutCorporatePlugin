@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<orm-designer version="1.4.3.457">
+
+  <module import-format="DoctrineYml" import-path="schema.yml" name="peanutCorporatePlugin" visBkColor="16380923" visSizeX="0" visSizeX2="538" visSizeY="6" visSizeY2="358">
+    <table name="peanutItem" visPositionX="394" visPositionY="136" visSizeX="0" visSizeX2="95" visSizeY="0" visSizeY2="115">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="type" required="true" size="255" type="string"/>
+      <column name="title" required="true" size="255" type="string"/>
+      <column name="content" type="clob"/>
+      <column name="menu" required="true" type="integer"/>
+      <column name="author" required="true" type="integer"/>
+      <column default="draft" name="status" type="enum" values="draft,publish"/>
+      <inheritance-parent discriminator-column="type" type="column_aggregation"/>
+      <orm-properties>
+        <attribute name="actAs">
+          <attribute name="Timestampable"/>
+          <attribute name="Sortable">
+            <attribute name="uniqueBy">[menu]</attribute>
+            <attribute name="class">peanutItem</attribute>
+          </attribute>
+          <attribute name="Seoable"/>
+          <attribute name="I18n">
+            <attribute name="fields">[title,content,excerpt]</attribute>
+            <attribute name="actAs">
+              <attribute name="Sluggable">
+                <attribute name="fields">[title]</attribute>
+                <attribute name="uniqueBy">[lang,title]</attribute>
+              </attribute>
+            </attribute>
+          </attribute>
+        </attribute>
+      </orm-properties>
+    </table>
+    <table name="peanutPage" visPositionX="134" visPositionY="98" visSizeX="0" visSizeX2="78" visSizeY="0" visSizeY2="31">
+      <column name="excerpt" type="clob"/>
+      <inheritance-child derived-from="peanutItem" discriminator-value="page" visCenterX="0" visCenterY="0"/>
+    </table>
+    <table name="peanutLink" visPositionX="31" visPositionY="31" visSizeX="0" visSizeX2="89" visSizeY="0" visSizeY2="45">
+      <column name="url" size="255" type="string"/>
+      <column name="relation" type="integer"/>
+      <inheritance-child derived-from="peanutItem" discriminator-value="link" visCenterX="0" visCenterY="0"/>
+    </table>
+    <table name="peanutXfn" visPositionX="24" visPositionY="205" visSizeX="0" visSizeX2="102" visSizeY="0" visSizeY2="129">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column default="false" name="me" type="boolean"/>
+      <column name="friendship" type="array"/>
+      <column name="physical" type="array"/>
+      <column name="professional" type="array"/>
+      <column name="geographical" type="array"/>
+      <column name="family" type="array"/>
+      <column name="romantic" type="array"/>
+    </table>
+    <table name="peanutMenu" visPositionX="146" visPositionY="209" visSizeX="0" visSizeX2="98" visSizeY="0" visSizeY2="45">
+      <column auto-increment="true" name="id" primary="true" type="integer"/>
+      <column name="name" required="true" size="255" type="string"/>
+      <orm-properties>
+        <attribute name="actAs">
+          <attribute name="Sluggable">
+            <attribute name="fields">[name]</attribute>
+          </attribute>
+          <attribute name="NestedSet">
+            <attribute name="hasManyRoots">true</attribute>
+            <attribute name="rootColumnName">root_id</attribute>
+          </attribute>
+        </attribute>
+      </orm-properties>
+    </table>
+    <foreign-key from="peanutItem" name="FK_peanutItem_sfGuardUser_id" to="sfGuardUser">
+      <foreign-key-column from="author" to="id"/>
+    </foreign-key>
+    <foreign-key from="peanutItem" name="FK_peanutItem_peanutMenu_id" to="peanutMenu">
+      <foreign-key-column from="menu" to="id"/>
+    </foreign-key>
+    <foreign-key from="peanutLink" name="FK_peanutLink_peanutXfn_id" to="peanutXfn">
+      <foreign-key-column from="relation" to="id"/>
+      <orm-properties>
+        <attribute name="side-inverse">
+          <attribute name="type">one</attribute>
+        </attribute>
+      </orm-properties>
+    </foreign-key>
+  </module>
+
+</orm-designer>
