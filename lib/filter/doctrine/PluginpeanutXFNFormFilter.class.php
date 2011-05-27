@@ -12,5 +12,6 @@ abstract class PluginpeanutXFNFormFilter extends BasepeanutXFNFormFilter
 {
   public function setup()
   {
+    parent::setup();
   }
 }
