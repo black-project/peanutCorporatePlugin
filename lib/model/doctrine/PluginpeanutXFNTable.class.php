@@ -17,3 +17,4 @@ abstract class PluginpeanutXfnTable extends Doctrine_Table
         return Doctrine_Core::getTable('PluginpeanutXfn');
     }
 }
+
