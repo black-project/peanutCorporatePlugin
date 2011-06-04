@@ -29,6 +29,11 @@ abstract class PluginpeanutLinkTable extends Doctrine_Table
             ->leftJoin('p.peanutMenu m')
             ->leftJoin('p.peanutXfn x')
             ->leftJoin('p.peanutSeo o')
+            ->select('p.id, p.type, p.title, p.content, p.menu, p.author, p.status, p.excerpt, p.url, p.relation, p.created_at, p.updated_at, p.slug, p.position, p.seo_id')
+            ->addSelect('s.id, s.first_name, s.last_name, s.email_address, s.username')
+            ->addSelect('m.id, m.name, m.slug')
+            ->addSelect('x.id, x.me, x.friendship, x.physical, x.professional, x.geographical, x.family, x.romantic')
+            ->addSelect('o.id, o.title, o.description, o.keywords, o.is_indexable, o.is_followable')
             ->orderBy('p.position ASC');
 
     return $p;

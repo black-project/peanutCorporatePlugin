@@ -29,6 +29,9 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
     $p = $this->createQuery('p')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
+            ->select('p.id, p.type, p.title, p.content, p.menu, p.author, p.status, p.excerpt, p.url, p.relation, p.created_at, p.updated_at, p.slug, p.position, p.seo_id')
+            ->addSelect('s.id, s.first_name, s.last_name, s.email_address, s.username')
+            ->addSelect('m.id, m.name, m.slug')
             ->orderBy('p.position ASC');
 
     if(null !== $type)
