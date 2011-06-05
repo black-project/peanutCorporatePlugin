@@ -64,6 +64,10 @@
         <source>Published at</source>
         <target>Publié le</target>
       </trans-unit>
+      <trans-unit>
+        <source>characters still available.</source>
+        <target>caractères encore disponibles.</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
