@@ -3,6 +3,16 @@
 
 <div class="sf_admin_form">
   
+<<<<<<< HEAD
+=======
+  <section class="language clearfix">
+    <ul>
+      <li class="en">EN</li>
+      <li class="fr">FR</li>
+    </ul>
+  </section>
+  
+>>>>>>> 6694da15817daba4eb84aade597047a354414062
   <?php echo form_tag_for($form, '@peanut_link') ?>
     <?php echo $form->renderHiddenFields(false) ?>
 
@@ -16,6 +26,7 @@
       </div>
       
       <div class="content_box_content clearfix">
+<<<<<<< HEAD
         <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_title">
           <?php echo $form['title']->renderLabel() ?>
           
@@ -37,6 +48,53 @@
           
           <div class="help">
             <?php echo $form['slug']->renderHelp() ?>
+=======
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_fr_title fr">
+          <?php echo $form['fr']['title']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['fr']['title']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['fr']['title']->renderHelp() ?>
+          </div>
+        </div>
+        
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_fr_slug fr">
+          <?php echo $form['fr']['slug']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['fr']['slug']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['fr']['slug']->renderHelp() ?>
+          </div>
+        </div>
+        
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_en_title en">
+          <?php echo $form['en']['title']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['en']['title']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['en']['title']->renderHelp() ?>
+          </div>
+        </div>
+        
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_en_slug en">
+          <?php echo $form['en']['slug']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['en']['slug']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['en']['slug']->renderHelp() ?>
+>>>>>>> 6694da15817daba4eb84aade597047a354414062
           </div>
         </div>
         
@@ -62,6 +120,7 @@
       </div>
       
       <div class="content_box_content">
+<<<<<<< HEAD
         <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_content">
           <?php echo $form['content']->renderLabel() ?>
           
@@ -74,6 +133,31 @@
           </div>
         </div>
 
+=======
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_fr_content fr">
+          <?php echo $form['fr']['content']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['fr']['content']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['fr']['content']->renderHelp() ?>
+          </div>
+        </div>
+        
+        <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_en_content en">
+          <?php echo $form['en']['content']->renderLabel() ?>
+          
+          <div class="content">
+            <?php echo $form['en']['content']->render() ?>
+          </div>
+          
+          <div class="help">
+            <?php echo $form['en']['content']->renderHelp() ?>
+          </div>
+        </div>
+>>>>>>> 6694da15817daba4eb84aade597047a354414062
         
         <div class="sf_admin_form_row sf_admin_text sf_admin_form_field_peanutSeo">
           
@@ -82,6 +166,7 @@
           <div class="content">
             <div class="embedForm">
               
+<<<<<<< HEAD
               <div class="form-row sf_admin_form_field_peanutSeo_title">
                 <?php echo $form['peanutSeo']['title']->renderLabel() ?>
                 <?php echo $form['peanutSeo']['title']->render() ?>
@@ -105,6 +190,42 @@
                 <?php echo $form['peanutSeo']['keywords']->renderLabel() ?>
                 <?php echo $form['peanutSeo']['keywords']->render() ?>
                 <div class="help"><?php echo $form['peanutSeo']['keywords']->renderHelp() ?></div>
+=======
+              <div class="form-row fr">
+                <?php echo $form['peanutSeo']['fr']['title']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['fr']['title']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['fr']['title']->renderHelp() ?></div>
+              </div>
+              
+              <div class="form-row en">
+                <?php echo $form['peanutSeo']['en']['title']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['en']['title']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['en']['title']->renderHelp() ?></div>
+              </div>
+              
+              <div class="form-row fr">
+                <?php echo $form['peanutSeo']['fr']['description']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['fr']['description']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['fr']['description']->renderHelp() ?></div>
+              </div>
+              
+              <div class="form-row en">
+                <?php echo $form['peanutSeo']['en']['description']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['en']['description']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['en']['description']->renderHelp() ?></div>
+              </div>
+              
+              <div class="form-row fr">
+                <?php echo $form['peanutSeo']['fr']['keywords']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['fr']['keywords']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['fr']['keywords']->renderHelp() ?></div>
+              </div>
+              
+              <div class="form-row en">
+                <?php echo $form['peanutSeo']['en']['keywords']->renderLabel() ?>
+                <?php echo $form['peanutSeo']['en']['keywords']->render() ?>
+                <div class="help"><?php echo $form['peanutSeo']['en']['keywords']->renderHelp() ?></div>
+>>>>>>> 6694da15817daba4eb84aade597047a354414062
               </div>
               
               <div class="form-row">
@@ -118,6 +239,10 @@
                 <?php echo $form['peanutSeo']['is_followable']->render() ?>
                 <div class="help"><?php echo $form['peanutSeo']['is_followable']->renderHelp() ?></div>
               </div>
+<<<<<<< HEAD
+=======
+              
+>>>>>>> 6694da15817daba4eb84aade597047a354414062
             </div>
           </div>
         </div>
@@ -240,4 +365,8 @@
 
     <?php include_partial('adminLink/form_actions', array('peanut_link' => $peanut_link, 'form' => $form, 'configuration' => $configuration, 'helper' => $helper)) ?>
   </form>
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> 6694da15817daba4eb84aade597047a354414062

@@ -15,7 +15,7 @@
 
   <footer>
     <?php include_partial('author', array('author' => $item['sfGuardUser'])) ?>
-    <?php include_partial('date', array('created' => $item['created_at'], 'updated' => $item['updated_at'])) ?>
+    <?php include_partial('date', array('created' => $item['created_at'], 'updated' => $item['updated_at'], 'culture' => $culture)) ?>
   </footer>
   
 </article>
