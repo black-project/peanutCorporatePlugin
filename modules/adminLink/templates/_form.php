@@ -86,7 +86,7 @@
                 <?php echo $form['peanutSeo']['title']->renderLabel() ?>
                 <?php echo $form['peanutSeo']['title']->render() ?>
                 <div class="count">
-                  <span class="counter">195</span> <?php echo __('characters still available.', null, 'peanutCorporate') ?>
+                  <span class="counter"><?php echo $form['peanutSeo']['title']->getValue() ? 195 - strlen($form['peanutSeo']['title']->getValue()) : '195'; ?></span> <?php echo __('characters still available.', null, 'peanutCorporate') ?>
                 </div>
                 <div class="help hidden"><?php echo $form['peanutSeo']['title']->renderHelp() ?></div>
               </div>
@@ -95,7 +95,7 @@
                 <?php echo $form['peanutSeo']['description']->renderLabel() ?>
                 <?php echo $form['peanutSeo']['description']->render() ?>
                 <div class="count">
-                  <span class="counter">195</span> <?php echo __('characters still available.', null, 'peanutCorporate') ?>
+                  <span class="counter"><?php echo $form['peanutSeo']['description']->getValue() ? 255 - strlen($form['peanutSeo']['description']->getValue()) : '255'; ?></span> <?php echo __('characters still available.', null, 'peanutCorporate') ?>
                 </div>
                 <div class="help hidden"><?php echo $form['peanutSeo']['description']->renderHelp() ?></div>
               </div>
