@@ -18,7 +18,6 @@ generator:
       
       list:
         title:   "Items"
-        
         display: [=title, sfGuardUser, type, peanutMenu, status]
         
         actions:
@@ -44,11 +43,11 @@ generator:
           _delete:    ~
 
       filter:
-        display:           [title, type, menu]
+        display:           [type, menu]
         
       form:
         display:
-          "General":       [title, slug]
+          "General":       [slug]
           "Content":       [content, excerpt, url, relation]
           "Informations":  [status, author, menu, created_at]
       

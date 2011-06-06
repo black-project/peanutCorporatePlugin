@@ -24,6 +24,7 @@ class adminItemActions extends autoAdminItemActions
     return parent::buildQuery()
       ->leftJoin('r.peanutMenu as m ON r.menu = m.id')
       ->leftJoin('r.peanutSeo as s ON r.seo_id = s.id')
+      ->leftJoin('r.Translation as t ON r.id = t.id')
       ->leftJoin('r.sfGuardUser as u ON r.author = u.id');
   }
   

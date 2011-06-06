@@ -45,14 +45,6 @@
         <target>Voir cette page : %title%</target>
       </trans-unit>
       <trans-unit>
-        <source>View this entry: %title%</source>
-        <target>Voir cette page : %title%</target>
-      </trans-unit>
-      <trans-unit>
-        <source>View this entry: %title%</source>
-        <target>Voir cette page : %title%</target>
-      </trans-unit>
-      <trans-unit>
         <source>Last entries for</source>
         <target>Les derniers articles pour</target>
       </trans-unit>
