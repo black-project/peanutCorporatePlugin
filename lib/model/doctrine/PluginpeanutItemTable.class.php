@@ -30,7 +30,8 @@ abstract class PluginpeanutItemTable extends Doctrine_Table
             ->leftJoin('p.Translation t')
             ->leftJoin('p.sfGuardUser s')
             ->leftJoin('p.peanutMenu m')
-            ->select('p.id, p.type, p.title, p.content, p.menu, p.author, p.status, p.excerpt, p.url, p.relation, p.created_at, p.updated_at, p.slug, p.position, p.seo_id')
+            ->select('p.id, p.type, p.menu, p.author, p.status, p.url, p.relation, p.created_at, p.updated_at, p.position, p.seo_id')
+            ->addSelect('t.title, t.content, t.excerpt, t.lang, t.slug')
             ->addSelect('s.id, s.first_name, s.last_name, s.email_address, s.username')
             ->addSelect('m.id, m.name, m.slug')
             ->orderBy('p.position ASC');
