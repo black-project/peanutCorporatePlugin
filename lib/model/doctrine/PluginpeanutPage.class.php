@@ -12,4 +12,17 @@
  */
 abstract class PluginpeanutPage extends BasepeanutPage
 {
+  public function asArray()
+  {
+    return array(
+        'id'          => $this->getId(),
+        'slug'        => $this->getSlug(),
+        'title'       => $this->getTitle(),
+        'excerpt'     => $this->getExcerpt(),
+        'content'     => $this->getContent(),
+        'author'      => $this->getSfGuardUser()->getName(),
+        'created_at'  => $this->getCreatedAt(),
+        'updated_at'  => $this->getUpdatedAt()
+    );
+  }
 }

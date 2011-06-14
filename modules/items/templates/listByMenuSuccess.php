@@ -2,8 +2,13 @@
 
 <section>
 
-  <h1><?php echo __('Last entries for') . ' ' . $items[0]['peanutMenu']['name'] ?></h1>
+  <h1><?php echo __('Last entries for menu %s', array('%s' => $items[0]['peanutMenu']['name']), 'peanutCorporate') ?></h1>
   
+  <?php if(!count($items)): ?>
+  
+    <p><?php echo __('There is no entries for %s', array('%s' =>  $items[0]['peanutMenu']['name']), 'peanutCorporate') ?></p>
+    
+  <?php else: ?>
   <?php foreach($items as $item): ?>
 
   <article id="page-<?php echo $item['id'] ?>">
@@ -37,5 +42,6 @@
   </article>
 
   <?php endforeach; ?>
+  <?php endif; ?>
 
 </section>

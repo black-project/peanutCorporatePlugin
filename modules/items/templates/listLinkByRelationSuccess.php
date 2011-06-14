@@ -2,8 +2,13 @@
 
 <section>
 
-  <h1><?php echo __('Last entries for relation:') . ' ' . $sf_context->getInstance()->getRequest()->getParameter('relation') ?></h1>
-
+  <h1><?php echo __('Last entries for relation %s', array('%s' => $sf_context->getInstance()->getRequest()->getParameter('relation')), 'peanutCorporate') ?></h1>
+  
+  <?php if(!count($items)): ?>
+  
+    <p><?php echo __('There is no entries for %s', array('%s' => $sf_context->getInstance()->getRequest()->getParameter('relation')), 'peanutCorporate') ?></p>
+    
+  <?php else: ?>
   <?php foreach($items as $item): ?>
 
   <article id="page-<?php echo $item['id'] ?>">
@@ -37,5 +42,5 @@
   </article>
 
   <?php endforeach; ?>
-
+  <?php endif; ?>
 </section>

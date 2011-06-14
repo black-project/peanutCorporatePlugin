@@ -29,33 +29,57 @@ class itemsActions extends sfActions
   public function executeList(sfWebRequest $request)
   {
     $items = Doctrine_Core::getTable('peanutItem')->getItems();
-    $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-
-    $this->forward404Unless($this->items);
+    $items = $this->_processing($request, $items);
+    
+    $this->items = $items;
   }
 
   public function executeListByAuthor(sfWebRequest $request)
   {
     $items = Doctrine_Core::getTable('peanutPage')->getItemsByAuthor($this->getRequestParameter('author'));
-    $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-
-    $this->forward404Unless($this->items);
+    $items = $this->_processing($request, $items);
+    
+    $this->items = $items;
   }
 
   public function executeListByMenu(sfWebRequest $request)
   {
     $items = Doctrine_Core::getTable('peanutItem')->getItemsByMenu($this->getRequestParameter('menu'));
-    $this->items = $items->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
-
-    $this->forward404Unless($this->items);
+    $items = $this->_processing($request, $items);
+    
+    $this->items = $items;
   }
 
   public function executeListLinkByRelation(sfWebRequest $request)
   {
     $links = Doctrine_core::getTable('peanutLink')->getItemsByRelation($this->getRequestParameter('relation'));
-    $this->items = $links->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+    $items = $this->_processing($request, $links);
+    
+    $this->items = $items;
+  }
+  
+  
+  protected function _processing($request, $object)
+  {
+    if('json' === $request->getRequestFormat())
+    {   
+      $items = $object->execute();
+        
+      $fetch = array();
+      $i = 0;
+      foreach($items as $item)
+      {
+        $fetch[$i++] = $item->asArray();
+      }
 
-    $this->forward404Unless($this->items);
+      $items = $fetch;
+    }
+    else
+    {
+      $items = $object->execute(array(), Doctrine_Core::HYDRATE_ARRAY);
+    }
+    
+    return $items;
   }
 
 }
