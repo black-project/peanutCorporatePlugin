@@ -25,6 +25,22 @@
         <target>Passer au niveau supérieur</target>
       </trans-unit>
       <trans-unit>
+        <source>Add new menu</source>
+        <target>Ajouter un menu</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Edit AdminMenu</source>
+        <target>Editer le menu</target>
+      </trans-unit>
+       <trans-unit>
+        <source>Edit AdminPage</source>
+        <target>Editer la page</target>
+      </trans-unit>
+       <trans-unit>
+        <source>Edit AdminLink</source>
+        <target>Editer le lien</target>
+      </trans-unit>         
+      <trans-unit>
         <source>General</source>
         <target>Général</target>
       </trans-unit>
@@ -113,8 +129,8 @@
         <target>Url du site</target>
       </trans-unit>
       <trans-unit>
-        <source>The item url (must be an http or https url)</source>
-        <target>Le lien internet (doit être un lien http ou https)</target>
+        <source>The item url (must be an http / https url or relative url like /page.html )</source>
+        <target>Le lien internet (doit être un lien http / https ou un lien relatif comme /page.html )</target>
       </trans-unit>
       <trans-unit>
         <source>publish</source>
@@ -131,6 +147,26 @@
       <trans-unit>
         <source>Status was modified successfully</source>
         <target>Le statut de publication a été modifié avec succès</target>
+      </trans-unit>
+      <trans-unit>
+        <source>AdminMenu List</source>
+        <target>Liste des menus</target>
+      </trans-unit>
+      <trans-unit>
+        <source>New AdminMenu</source>
+        <target>Nouveau menu</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Items</source>
+        <target>Contenus</target>
+      </trans-unit>
+      <trans-unit>
+        <source>New AdminPage</source>
+        <target>Nouvelle page</target>
+      </trans-unit>
+      <trans-unit>
+        <source>New AdminLink</source>
+        <target>Nouveau lien</target>
       </trans-unit>
     </body>
   </file>

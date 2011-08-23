@@ -61,9 +61,10 @@ peanutLink:
       type: integer
   relations:
     peanutXfn:
-      type: one
+      foreignType: one
       local: relation
       foreign: id
+      cascade: [delete]
 
 peanutXfn:
   columns:
