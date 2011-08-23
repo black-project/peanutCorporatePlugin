@@ -19,6 +19,38 @@ class adminMenuActions extends autoAdminMenuActions
     $query->addOrderBy('lft asc');
   }
   
+  public function executeNewx(sfWebRequest $request)
+  {
+    if ($request->isXmlHttpRequest())
+    {
+      $this->form = new peanutMenuForm();      
+      return $this->renderPartial('adminMenu/ajax', array('form' => $this->form));
+    }
+    
+    return null;
+  }
+   
+  public function executeAjax(sfWebRequest $request)
+  {
+    $menu = new peanutMenu();       
+    $this->form = new peanutMenuForm();       
+    $this->processForm($request, $this->form);                
+  }
+   
+  protected function processForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $peanut_menu = $form->save();
+      $menu = new peanutPageForm();     
+      $menu->setDefault('menu', $peanut_menu->getId() );
+      echo $form_menu = $menu['menu'];       
+      exit();
+    }
+  }
+   
+   
   public function executeBatch(sfWebRequest $request)
   {
     if ("batchOrder" == $request->getParameter('batch_action'))

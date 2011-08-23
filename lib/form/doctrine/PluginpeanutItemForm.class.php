@@ -46,11 +46,15 @@ abstract class PluginpeanutItemForm extends BasepeanutItemForm
       'excerpt'       => 'The item excerpt (not required)',
       'status'        => 'If you want to hide this entry for visitors',
       'menu'          => 'The menu where will appear this iteam',
-      'url'           => 'The item url (must be an http or https url)',
+      'url'           => 'The item url (must be an http / https url or relative url like /page.html )',
       'relation'      => 'Your relation with the website',
       'created_at'    => 'Useful is you want to modify the date of the entry publication'
     ));
-
+    
+    $this->widgetSchema['menu'] = new sfWidgetFormDoctrineChoiceNestedSet(array(
+      'model'     => 'peanutMenu',
+    ));
+    
     $this->embedRelation('peanutSeo');
     $this->widgetSchema['peanutSeo']->setLabel('SEO');
     

@@ -55,5 +55,24 @@ abstract class PluginpeanutPageForm extends BasepeanutPageForm
     ),$messages = array(
       'required'  => 'Fill this please'
     ));
+    
+    $this->widgetSchema['author'] = new sfWidgetFormChoice(array(
+        'choices' => $this->_getUsers()
+    ));
+        
   }
+  
+  protected function _getUsers()
+  {
+    $users = array();
+    $choices = Doctrine::getTable('sfGuardUser')->getUsersWhereGroupIs('2')->execute();
+    
+    foreach($choices as $user)
+    {
+      $users[$user->getId()] = $user->getName();
+    }
+    
+    return $users;
+  }
+  
 }

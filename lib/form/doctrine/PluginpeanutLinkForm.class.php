@@ -20,24 +20,22 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
      'title',
      'slug',
      'url',
-     'content',
-     'relation',
+     'content',     
      'author',
      'status',
      'menu',
      'created_at'
     ));
-    
-    $this->widgetSchema['url'] = new sfWidgetFormHtml5InputUrl($options = array(), $attributes = array(
+        
+    $this->widgetSchema['url'] = new sfWidgetFormHtml5InputText($options = array(), $attributes = array(
         'required'    => true,
-        'placeholder' => 'http://www.mywebsite.com',
-        'pattern'     => 'https?://.+'
+        'placeholder' => 'http://www.mywebsite.com'        
     ));
 
     $this->widgetSchema['content'] = new sfWidgetFormTextarea($options = array(), $attributes = array(
         'placeholder' => 'Simple description about my link'
     ));
-
+    
     $this->embedRelation('peanutXfn');
     $this->widgetSchema['peanutXfn']->setLabel('XFN');
 
@@ -59,5 +57,61 @@ abstract class PluginpeanutLinkForm extends BasepeanutLinkForm
     ),$messages = array(
       'required'  => 'Fill this please'
     ));
-  }
+
+    $this->widgetSchema['author'] = new sfWidgetFormChoice(array(
+          'choices' => $this->_getUsers()
+      ));
+
+    }
+    
+    protected function _getUsers()
+    {
+      $users = array();
+      $choices = Doctrine::getTable('sfGuardUser')->getUsersWhereGroupIs('2')->execute();
+
+      foreach($choices as $user)
+      {
+        $users[$user->getId()] = $user->getName();
+      }
+
+      return $users;
+    }
+    
+    public function doBind(array $values) 
+    { 
+      $url = ($values['url'] );
+
+      if(preg_match('#^https?://.+#', $url) ){             
+
+      $this->validatorSchema['url'] = new sfValidatorUrl($options = array(
+          'required'  => true
+        ),$messages = array(
+          'required'  => 'Fill this please'
+      ));
+
+      }
+      else if(preg_match('#^/.+\.html$#', $url)) {         
+           $this->validatorSchema['url'] = new sfValidatorPass($options = array(
+            'required'  => true
+          ),$messages = array(
+            'required'  => 'Fill this please'
+          ));       
+       }   
+
+      function clearIfMe( $values )
+      {
+        if($values['peanutXfn']['me'] == "on") {              
+          foreach($values['peanutXfn'] as $key => $val){
+            if($key != "me")
+              $values['peanutXfn'][$key] = null;          
+          }     
+        }    
+        return $values['peanutXfn'];
+      }
+
+      $values['peanutXfn'] = clearIfMe($values);
+
+      parent::doBind($values); 
+    }
+  
 }
