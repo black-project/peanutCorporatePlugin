@@ -211,13 +211,19 @@
         <div class="sf_admin_form_row sf_admin_foreignkey sf_admin_form_field_menu">
           <?php echo $form['menu']->renderLabel() ?>
           
-          <div class="content">
+          <div class="content" id="selectmenu">
             <?php echo $form['menu']->render() ?>
+            
+            <a class="ajax" href="/adminMenu/newx">
+              <img title="<?php echo __("Add new menu") ?>" src="/images/admin/add.png" />
+            </a>
           </div>
           
-          <div class="help">
+          <div class="help">            
             <?php echo $form['menu']->renderHelp() ?>
           </div>
+          
+          <div id="dialog"></div>
         </div>
         
         <?php if(!$form->isNew()): ?>
